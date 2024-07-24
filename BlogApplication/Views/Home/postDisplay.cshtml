@@ -1,0 +1,48 @@
+﻿@model List<BlogApplication.Context.Post>
+@{
+    ViewBag.Title = "postDisplay";
+}
+<style>
+    .format {
+        padding-left: 130px;
+        padding-right: 150px;
+    }
+
+    .title {
+        font-size: xx-large;
+        font-size: 2.25rem;
+        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    .button {
+        padding-top: 5px;
+    }
+</style>
+<div><img src=" https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" height="400px" width="100%"/></div>
+<h2>AllPosts</h2>
+
+
+<div class="container">
+    <div class="format">
+        @foreach (var item in Model)
+        {
+            <div>
+                <div class="title">
+                    <h2>@item.Title</h2>
+                </div>
+                <div class="body">
+                    @item.Content
+                </div>
+                <div>
+                    @item.CreatedDate
+                </div>
+            </div>
+            <div class="button">
+                <a href="@Url.Action("CommentDisplay", "Home", new { postId = item.PostId })" class="active">Comments</a>
+            </div>
+            <div class="button">
+                <a href="@Url.Action("Comment", "Home", new { postId = item.PostId })" class="btn btn-success ">Add Comment</a>
+            </div>
+        }
+    </div>
+</div>
